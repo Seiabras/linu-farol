@@ -224,6 +224,20 @@ body { padding-bottom: 72px; }
 .rodape-dentro { display: grid; gap: 16px; }
 .rodape-links { display: flex; flex-wrap: wrap; gap: 8px 20px; }
 
+/* ===== Celular (até 699 px): a lista, as luzes e os planos correm de lado (07/11/2026) =====
+   Uma placa por vez, com a próxima aparecendo na beira, em vez de três telas de cartões empilhados. */
+.faixa-dica { display: none; }
+@media (max-width: 699px) {
+  .faixa-dica { display: block; margin: 0 0 10px; font: 600 .8rem/1.3 "IBM Plex Mono", monospace; color: var(--tinta-suave); }
+  .faixa-dica { margin-top: 16px; }
+  .faixa-dica-luzes { margin-top: 24px; }
+  .faixa-dica-planos { margin-top: 24px; }
+  .faroes, .luzes-grade, .planos { display: grid; grid-auto-flow: column; grid-auto-columns: 86%; align-items: stretch; margin: 0 -16px; padding: 16px 16px 18px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-padding: 0 16px; scrollbar-width: thin; }
+  .luzes-grade { grid-auto-columns: 78%; }
+  .faroes > li, .luzes-grade > li, .planos > .plano { scroll-snap-align: start; }
+  .planos { padding-top: 20px; }
+}
+
 /* ===== Tablet (700 a 1099 px): o panorama ===== */
 @media (min-width: 700px) {
   body { padding-bottom: 0; }

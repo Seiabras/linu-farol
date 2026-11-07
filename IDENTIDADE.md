@@ -24,7 +24,9 @@ O Linu Farol é **o farol**: quem olha de fora, de longe, e avisa.
 
 ## Três versões, cada uma com a sua composição
 - **Celular (até 699 px):** coluna única; o farol e o Linu lado a lado em 1×; cada site da lista é um cartão com as
-  luzes num 2 × 2; o plano completo vem primeiro; a barra de pedir fica presa embaixo e some no contato.
+  luzes num 2 × 2; o plano completo vem primeiro; a barra de pedir fica presa embaixo e some no contato. Desde
+  07/11/2026, a lista de faróis, as quatro luzes e os planos correm de lado, um cartão por vez (`scroll-snap`), com
+  “Arraste para o lado” em cima, em vez de três telas de cartões empilhados.
 - **Tablet (700 a 1099 px):** a abertura em panorama (o texto em cima, o farol em 2× com o facho atravessando a tela);
   a lista em duas colunas; o plano completo ocupa a linha de cima e os outros dois embaixo.
 - **Computador (1100 px ou mais):** o texto ao lado do farol (o facho cortado do lado do texto); a lista vira a tabela
