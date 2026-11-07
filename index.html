@@ -3,17 +3,335 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Linu Farol</title>
-  <meta name="robots" content="noindex">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; font-src 'self'; style-src 'self'; script-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
-  <script src="js/tema-inicio.js"></script>
-  <link rel="stylesheet" href="css/estilo.css">
+  <title>Linu Farol: o painel do mês do seu negócio</title>
+  <meta name="description" content="Todo mês, uma página que mostra se o seu site está no ar, com o cadeado em dia, rápido e trancado, e como foram as visitas, o Google e o Instagram, com o que fazer em seguida. Da família Linu.">
+  <meta name="theme-color" content="#F4F7FA" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#06101F" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="img/linu-logo.png?v=04939f80" type="image/png" sizes="128x128">
+  <link rel="icon" href="img/icone-32.png?v=af06fd2b" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="img/icone-180.png?v=0174d73d">
+  <meta property="og:title" content="Linu Farol">
+  <meta property="og:description" content="O painel do mês do seu negócio: o site no ar, o cadeado, a rapidez, as trancas, as visitas, o Google e o Instagram. Da família Linu.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://farol.linupedia.com.br/">
+  <meta property="og:locale" content="pt_BR">
+  <!-- O que o Google lê sobre o Linu Farol (schema.org); os planos são os 3 cartões de #planos -->
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Linu Farol","url":"https://farol.linupedia.com.br/","description":"O painel do mês para pequenos negócios: site no ar, cadeado, rapidez, trancas de segurança, visitas, Google e Instagram.","logo":"https://farol.linupedia.com.br/img/linu-logo.png","telephone":"+55-61-99667-2610","email":"contato@linupedia.com.br","areaServed":"BR","inLanguage":"pt-BR","parentOrganization":{"@type":"Organization","name":"Família Linu","url":"https://familia.linupedia.com.br/"},"hasOfferCatalog":{"@type":"OfferCatalog","name":"Planos","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Farol do site"},"priceSpecification":{"@type":"UnitPriceSpecification","minPrice":50,"priceCurrency":"BRL","unitText":"mês"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Farol completo"},"priceSpecification":{"@type":"UnitPriceSpecification","minPrice":180,"priceCurrency":"BRL","unitText":"mês"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Ronda avulsa"},"priceSpecification":{"@type":"UnitPriceSpecification","minPrice":150,"priceCurrency":"BRL"}}]}}</script>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; font-src 'self'; style-src 'self'; script-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <link rel="canonical" href="https://farol.linupedia.com.br/">
+  <link rel="preload" href="fontes/big-shoulders-display-latin.woff2?v=698f9960" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fontes/public-sans-latin.woff2?v=5ed4d31c" as="font" type="font/woff2" crossorigin>
+  <script src="js/tema-inicio.js?v=b2e4d710"></script>
+  <link rel="stylesheet" href="css/fontes.css?v=67bf6215">
+  <link rel="stylesheet" href="css/estilo.css?v=71745bf4">
+  <link rel="stylesheet" href="css/movimento.css?v=6c3684a3">
+  <script src="js/farol.js?v=4abed8c3" defer></script>
+  <script src="js/linu-vivo.js?v=daf0f399" defer></script>
+  <script src="js/movimento.js?v=c068d761" defer></script>
 </head>
 <body>
-  <main>
-    <h1>Linu Farol</h1>
-    <p>Da família Linu. Em breve.</p>
-    <p><a href="https://familia.linupedia.com.br/">Conheça a Família Linu</a></p>
+  <!-- Os ícones do Linu Farol (traço 2, pontas redondas); o i-farol é a marca do topo -->
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-farol" viewBox="0 0 24 24"><path d="M9 21.5 10 9h4l1 12.5M8 21.5h8M9.5 9V6.5h5V9M12 3.5v3M10.4 13.5h3.2M9.9 17.5h4.2"/></symbol>
+    <symbol id="i-luz" viewBox="0 0 24 24"><path d="M9 18.5h6M10 21.5h4M12 2.5a6.5 6.5 0 0 0-3.5 12c.6.4 1 1.1 1 1.8v.2h5v-.2c0-.7.4-1.4 1-1.8a6.5 6.5 0 0 0-3.5-12Z"/></symbol>
+    <symbol id="i-cadeado" viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10.5" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3M12 14.5v2.5"/></symbol>
+    <symbol id="i-rapidez" viewBox="0 0 24 24"><path d="M4.5 16.5a8 8 0 1 1 15 0"/><path d="m12 13.5 4-4.5"/><circle cx="12" cy="14" r="1.2"/><path d="M3.5 20.5h17"/></symbol>
+    <symbol id="i-trancas" viewBox="0 0 24 24"><path d="M12 2.5 4.5 5.5v5.5c0 4.7 3.2 8.6 7.5 10.5 4.3-1.9 7.5-5.8 7.5-10.5V5.5Z"/><path d="m8.75 12 2.25 2.25 4.25-4.5"/></symbol>
+    <symbol id="i-visitas" viewBox="0 0 24 24"><path d="M3.5 20.5V11M9.5 20.5V5M15.5 20.5v-7M21 20.5V8.5M2.5 20.5h19"/></symbol>
+    <symbol id="i-mapa" viewBox="0 0 24 24"><path d="M12 21.5s-6.5-6.2-6.5-11.5a6.5 6.5 0 0 1 13 0c0 5.3-6.5 11.5-6.5 11.5Z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+    <symbol id="i-camera" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.25" cy="6.75" r=".9"/></symbol>
+    <symbol id="i-bussola" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5Z"/></symbol>
+  </svg>
+  <!-- A faixa da família: aponta para a Família Linu, que reúne os serviços -->
+  <aside class="faixa-irma" aria-label="Família Linu">
+    <span>Parte da família Linu, com o Linu Sites, o Digital Linu e o Linu Seguro.</span>
+    <a href="https://familia.linupedia.com.br/">Conheça a Família Linu <span aria-hidden="true">→</span></a>
+  </aside>
+
+  <header class="topo">
+    <div class="dentro topo-dentro">
+      <a class="marca" href="./" aria-label="Linu Farol, início">
+        <svg class="marca-icone" viewBox="0 0 24 24" width="30" height="30" aria-hidden="true"><use href="#i-farol"/></svg>
+        <span>Linu Farol</span>
+      </a>
+      <nav class="menu" aria-label="Seções">
+        <button class="menu-botao" type="button" aria-expanded="false" aria-controls="menu-links" data-menu>Menu</button>
+        <div class="menu-links" id="menu-links">
+          <a href="#lista">A lista</a>
+          <a href="#confere">O que confere</a>
+          <a href="#planos">Planos</a>
+          <a href="#como">Como funciona</a>
+          <a href="#contato">Contato</a>
+        </div>
+      </nav>
+      <button class="tema" type="button" data-tema aria-label="Mudar o tema">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path class="tema-sol" d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10ZM12 1.5v2M12 20.5v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1.5 12h2M20.5 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/><path class="tema-lua" d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11Z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="abertura">
+      <div class="dentro abertura-dentro">
+        <div class="abertura-texto">
+          <p class="sobretitulo">O painel do mês</p>
+          <h1>O farol do seu <span class="destaque">negócio</span></h1>
+          <p class="abertura-sub">Uma página só, sempre aberta, que mostra se o seu site está no ar, com o cadeado em dia,
+            rápido e trancado. Com o seu acesso, também as visitas, o Google e o Instagram do mês. E, todo dia 1º, o que
+            fazer em seguida, em português de gente.</p>
+          <div class="botoes">
+            <a class="botao" href="#lista">Ver o farol funcionando</a>
+            <a class="botao botao-contorno" href="#contato">Pedir o meu farol</a>
+          </div>
+        </div>
+        <figure class="cena" data-cena>
+          <div class="cena-palco">
+            <img class="pixel cena-feixe" src="img/farol-feixe.png?v=bda5ec8e" alt="" width="410" height="221">
+            <img class="pixel cena-farol" src="img/farol.png?v=de526834" alt="Um farol de faixas vermelhas e brancas numa pedra, em pixel art" width="110" height="221">
+            <img class="pixel cena-noite" src="img/farol-noite.png?v=ee609fbf" alt="" width="110" height="221">
+            <img class="pixel cena-luz" src="img/farol-luz.png?v=5d0b2005" alt="" width="110" height="221">
+            <img class="pixel cena-linu" data-linu-vivo data-piscar="img/linu-luneta-piscando.png?v=c94945fa" src="img/linu-luneta.png?v=d98d1c5e" alt="O Linu, o pinguim da LinuPedia, de faroleiro, com uma luneta, ao pé do farol" width="124" height="198">
+          </div>
+          <figcaption class="cena-legenda" data-cena-legenda aria-live="polite">De dia, o farol descansa. À noite, a lanterna acende.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="secao" id="lista">
+      <div class="dentro">
+        <p class="sobretitulo">Funcionando de verdade</p>
+        <h2 data-mov="palavras">A lista de faróis</h2>
+        <p class="secao-sub" data-mov="sobe">Os sites da própria família Linu, conferidos de 6 em 6 horas. É o mesmo painel que você recebe, com o
+          seu site no lugar. Cada site tem quatro luzes: acesa quer dizer tudo certo; fraca, vale olhar; apagada, tem
+          problema.</p>
+        <div class="lista" data-mov="aparece">
+          <!-- ronda:inicio -->
+          <p class="lista-quando">Última ronda: <time datetime="2026-11-07T04:36:28+00:00">07/11/2026, 01:36</time> (Brasília). A próxima, em até 6 horas.</p>
+          <ol class="faroes">
+            <li class="farol-item farol-acesa">
+              <div class="farol-cabeca"><span class="sinal sinal-acesa" aria-hidden="true"></span><h3><a href="https://familia.linupedia.com.br/">Família Linu</a></h3><span class="farol-ilha">o mapa das ilhas</span><span class="farol-geral">4 de 4 luzes acesas</span></div>
+              <dl class="luzes">
+                <div class="luz luz-acesa"><dt><span class="sinal sinal-acesa" aria-hidden="true"></span>Luz <span class="luz-estado">acesa</span></dt><dd>no ar</dd></div>
+                <div class="luz luz-acesa"><dt><span class="sinal sinal-acesa" aria-hidden="true"></span>Cadeado <span class="luz-estado">acesa</span></dt><dd>em dia: vale por mais 6 dias e renova sozinho</dd></div>
+                <div class="luz luz-acesa"><dt><span class="sinal sinal-acesa" aria-hidden="true"></span>Rapidez <span class="luz-estado">acesa</span></dt><dd>responde em 202 ms; a primeira visita baixa 314 KB</dd></div>
+                <div class="luz luz-acesa"><dt><span class="sinal sinal-acesa" aria-hidden="true"></span>Trancas <span class="luz-estado">acesa</span></dt><dd>6 de 6 trancas</dd></div>
+              </dl>
+              <p class="farol-historico">O histórico começou agora: a conta aparece a partir da 4ª ronda.</p>
+            </li>
+            <li class="farol-item farol-acesa">
+              <div class="farol-cabeca"><span class="sinal sinal-acesa" aria-hidden="true"></span><h3><a href="https://sites.linupedia.com.br/">Linu Sites</a></h3><span class="farol-ilha">a estação</span><span class="farol-geral">4 de 4 luzes acesas</span></div>
+              <dl class="luzes">
+                <div class="luz luz-acesa"><dt><span class="sinal sinal-acesa" aria-hidden="true"></span>Luz <span class="luz-estado">acesa</span></dt><dd>no ar</dd></div>
+                <div class="luz luz-acesa"><dt><span class="sinal sinal-acesa" aria-hidden="true"></span>Cadeado <span class="luz-estado">acesa</span></dt><dd>em dia: vale por mais 6 dias e renova sozinho</dd></div>
+                <div class="luz luz-acesa"><dt><span class="sinal sinal-acesa" aria-hidden="true"></span>Rapidez <span class="luz-estado">acesa</span></dt><dd>responde em 205 ms; a primeira visita baixa 462 KB</dd></div>
+                <div class="luz luz-acesa"><dt><span class="sinal sinal-acesa" aria-hidden="true"></span>Trancas <span class="luz-estado">acesa</span></dt><dd>6 de 6 trancas</dd></div>
+              </dl>
+              <p class="farol-historico">O histórico começou agora: a conta aparece a partir da 4ª ronda.</p>
+            </li>
+            <li class="farol-item farol-acesa">
+              <div class="farol-cabeca"><span class="sinal sinal-acesa" aria-hidden="true"></span><h3><a href="https://digital.linupedia.com.br/">Digital Linu</a></h3><span class="farol-ilha">a ilha de edição</span><span class="farol-geral">4 de 4 luzes acesas</span></div>
+              <dl class="luzes">
+                <div class="luz luz-acesa"><dt><span class="sinal sinal-acesa" aria-hidden="true"></span>Luz <span class="luz-estado">acesa</span></dt><dd>no ar</dd></div>
+                <div class="luz luz-acesa"><dt><span class="sinal sinal-acesa" aria-hidden="true"></span>Cadeado <span class="luz-estado">acesa</span></dt><dd>em dia: vale por mais 6 dias e renova sozinho</dd></div>
+                <div class="luz luz-acesa"><dt><span class="sinal sinal-acesa" aria-hidden="true"></span>Rapidez <span class="luz-estado">acesa</span></dt><dd>responde em 208 ms; a primeira visita baixa 235 KB</dd></div>
+                <div class="luz luz-acesa"><dt><span class="sinal sinal-acesa" aria-hidden="true"></span>Trancas <span class="luz-estado">acesa</span></dt><dd>6 de 6 trancas</dd></div>
+              </dl>
+              <p class="farol-historico">O histórico começou agora: a conta aparece a partir da 4ª ronda.</p>
+            </li>
+            <li class="farol-item farol-acesa">
+              <div class="farol-cabeca"><span class="sinal sinal-acesa" aria-hidden="true"></span><h3><a href="https://seguro.linupedia.com.br/">Linu Seguro</a></h3><span class="farol-ilha">o iglu</span><span class="farol-geral">4 de 4 luzes acesas</span></div>
+              <dl class="luzes">
+                <div class="luz luz-acesa"><dt><span class="sinal sinal-acesa" aria-hidden="true"></span>Luz <span class="luz-estado">acesa</span></dt><dd>no ar</dd></div>
+                <div class="luz luz-acesa"><dt><span class="sinal sinal-acesa" aria-hidden="true"></span>Cadeado <span class="luz-estado">acesa</span></dt><dd>em dia: vale por mais 6 dias e renova sozinho</dd></div>
+                <div class="luz luz-acesa"><dt><span class="sinal sinal-acesa" aria-hidden="true"></span>Rapidez <span class="luz-estado">acesa</span></dt><dd>responde em 201 ms; a primeira visita baixa 212 KB</dd></div>
+                <div class="luz luz-acesa"><dt><span class="sinal sinal-acesa" aria-hidden="true"></span>Trancas <span class="luz-estado">acesa</span></dt><dd>6 de 6 trancas</dd></div>
+              </dl>
+              <p class="farol-historico">O histórico começou agora: a conta aparece a partir da 4ª ronda.</p>
+            </li>
+            <li class="farol-item farol-apagada">
+              <div class="farol-cabeca"><span class="sinal sinal-apagada" aria-hidden="true"></span><h3><a href="https://farol.linupedia.com.br/">Linu Farol</a></h3><span class="farol-ilha">este farol</span><span class="farol-geral">0 de 4 luzes acesas</span></div>
+              <dl class="luzes">
+                <div class="luz luz-apagada"><dt><span class="sinal sinal-apagada" aria-hidden="true"></span>Luz <span class="luz-estado">apagada</span></dt><dd>não abriu (URLError)</dd></div>
+                <div class="luz luz-apagada"><dt><span class="sinal sinal-apagada" aria-hidden="true"></span>Cadeado <span class="luz-estado">apagada</span></dt><dd>não deu para ler o certificado (SSLError)</dd></div>
+                <div class="luz luz-apagada"><dt><span class="sinal sinal-apagada" aria-hidden="true"></span>Rapidez <span class="luz-estado">apagada</span></dt><dd>sem resposta</dd></div>
+                <div class="luz luz-apagada"><dt><span class="sinal sinal-apagada" aria-hidden="true"></span>Trancas <span class="luz-estado">apagada</span></dt><dd>sem resposta</dd></div>
+              </dl>
+              <p class="farol-historico">O histórico começou agora: a conta aparece a partir da 4ª ronda.</p>
+            </li>
+            <li class="farol-item farol-fraca">
+              <div class="farol-cabeca"><span class="sinal sinal-fraca" aria-hidden="true"></span><h3><a href="https://linupedia.com.br/">LinuPedia</a></h3><span class="farol-ilha">o acampamento</span><span class="farol-geral">3 de 4 luzes acesas</span></div>
+              <dl class="luzes">
+                <div class="luz luz-acesa"><dt><span class="sinal sinal-acesa" aria-hidden="true"></span>Luz <span class="luz-estado">acesa</span></dt><dd>no ar</dd></div>
+                <div class="luz luz-acesa"><dt><span class="sinal sinal-acesa" aria-hidden="true"></span>Cadeado <span class="luz-estado">acesa</span></dt><dd>em dia: vale por mais 6 dias e renova sozinho</dd></div>
+                <div class="luz luz-apagada"><dt><span class="sinal sinal-apagada" aria-hidden="true"></span>Rapidez <span class="luz-estado">apagada</span></dt><dd>responde em 207 ms; a primeira visita baixa 6,5 MB</dd></div>
+                <div class="luz luz-acesa"><dt><span class="sinal sinal-acesa" aria-hidden="true"></span>Trancas <span class="luz-estado">acesa</span></dt><dd>6 de 6 trancas</dd></div>
+              </dl>
+              <p class="farol-historico">O histórico começou agora: a conta aparece a partir da 4ª ronda.</p>
+            </li>
+          </ol>
+          <!-- ronda:fim -->
+        </div>
+        <p class="lista-nota">Sem truque: a lista sai da ronda automática (<code>ferramentas/ronda.py</code>) e os números
+          brutos estão em <a href="dados/ronda.json">dados/ronda.json</a>. Quando uma luz da família apaga, ela aparece
+          apagada aqui também.</p>
+      </div>
+    </section>
+
+    <section class="secao secao-faixa" id="confere">
+      <div class="dentro">
+        <p class="sobretitulo">As luzes</p>
+        <h2 data-mov="palavras">O que o farol confere</h2>
+        <p class="secao-sub" data-mov="sobe">As quatro luzes do site valem para qualquer site, feito por nós ou não, e não pedem senha nenhuma.</p>
+        <ul class="luzes-grade" data-mov-grupo="sobe">
+          <li class="cartao-luz"><svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-luz"/></svg>
+            <h3>Luz</h3><p>O site abre, é o site certo e responde rápido. Se cair, você sabe na hora, antes do cliente reclamar.</p>
+            <p class="quem">Se apagar: o Linu Sites (ou quem cuida do seu site).</p></li>
+          <li class="cartao-luz"><svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-cadeado"/></svg>
+            <h3>Cadeado</h3><p>O certificado do HTTPS em dia. Vencido, o navegador mostra “não seguro” e muita gente desiste.</p>
+            <p class="quem">Se apagar: o Linu Sites.</p></li>
+          <li class="cartao-luz"><svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-rapidez"/></svg>
+            <h3>Rapidez</h3><p>Quanto o site demora para responder e quanto pesa a primeira visita. No celular, peso é espera.</p>
+            <p class="quem">Se apagar: o Linu Sites.</p></li>
+          <li class="cartao-luz"><svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-trancas"/></svg>
+            <h3>Trancas</h3><p>Seis proteções que o site manda para o navegador (HTTPS sempre, só carregar o que é dele e outras).</p>
+            <p class="quem">Se apagar: o Linu Seguro.</p></li>
+        </ul>
+        <h3 class="subtitulo" data-mov="sobe">Com o seu acesso, o farol completo também mostra</h3>
+        <ul class="extras" data-mov-grupo="lado">
+          <li><svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-visitas"/></svg><div><b>Visitas do site</b>
+            <span>Quantas pessoas, de onde vieram e o que mais abriram. Contadas sem cookie e sem banner.</span></div></li>
+          <li><svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-mapa"/></svg><div><b>Google</b>
+            <span>Quantas vezes o negócio apareceu no Google e no Maps, quantas ligações e quantos pedidos de rota.</span></div></li>
+          <li><svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-camera"/></svg><div><b>Instagram</b>
+            <span>Alcance, seguidores novos e os posts que mais funcionaram no mês.</span></div></li>
+          <li><svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-bussola"/></svg><div><b>O rumo do mês</b>
+            <span>Três coisas para fazer no mês que vem, em ordem, e quem da família faz cada uma, se você quiser.</span></div></li>
+        </ul>
+        <p class="nota" data-mov="aparece">O acesso ao Google e ao Instagram é por convite, só de leitura. Senha, nunca.</p>
+      </div>
+    </section>
+
+    <section class="secao" id="planos">
+      <div class="dentro">
+        <p class="sobretitulo">Planos</p>
+        <h2 data-mov="palavras">Escolha o tamanho do farol</h2>
+        <p class="secao-sub" data-mov="sobe">Valores de referência, “a partir de”. O preço certo vem por escrito, depois de entender o seu caso. Sem fidelidade: para parar, 30 dias de aviso.</p>
+        <div class="planos" data-mov-grupo="sobe">
+          <article class="plano" data-id="farol-site" data-preco="50" data-tipo="mensal">
+            <h3>Farol do site</h3>
+            <p>As quatro luzes conferidas de hora em hora, aviso no WhatsApp se alguma apagar e o relatório do mês.</p>
+            <p class="servico-preco">a partir de <b>R$&nbsp;50</b> por mês <span>(um site)</span></p>
+            <a class="botao botao-contorno" href="#contato" data-escolher="Farol do site">Quero este</a>
+          </article>
+          <article class="plano plano-destaque" data-id="farol-completo" data-preco="180" data-tipo="mensal">
+            <p class="selo">O painel inteiro</p>
+            <h3>Farol completo</h3>
+            <p>O farol do site, mais visitas, Google e Instagram no mesmo painel, o rumo do mês e uma conversa de 20 minutos por mês.</p>
+            <p class="servico-preco">a partir de <b>R$&nbsp;180</b> por mês <span>(site, Google e Instagram)</span></p>
+            <a class="botao" href="#contato" data-escolher="Farol completo">Quero este</a>
+          </article>
+          <article class="plano" data-id="ronda-avulsa" data-preco="150" data-tipo="unico">
+            <h3>Ronda avulsa</h3>
+            <p>Uma ronda completa, uma vez: as luzes do site, o Google e o Instagram, com o relatório e o rumo. Sem mensalidade.</p>
+            <p class="servico-preco">a partir de <b>R$&nbsp;150</b> <span>(uma vez, com relatório)</span></p>
+            <a class="botao botao-contorno" href="#contato" data-escolher="Ronda avulsa">Quero este</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao secao-faixa" id="como">
+      <div class="dentro">
+        <p class="sobretitulo">Como funciona</p>
+        <h2 data-mov="palavras">Do pedido ao primeiro relatório</h2>
+        <ol class="passos" data-mov-grupo="sobe">
+          <li><b>Você manda o endereço</b><span>Do site e, no completo, os convites de leitura do Google e do Instagram.</span></li>
+          <li><b>A gente acende o farol</b><span>Em até 2 dias úteis o seu painel está no ar, com um endereço só seu.</span></li>
+          <li><b>Se apagar, você sabe</b><span>Uma mensagem no WhatsApp dizendo o que aconteceu e quem resolve.</span></li>
+          <li><b>Todo dia 1º, o mês</b><span>O relatório com os números, o que mudou e o rumo do mês que vem.</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="secao" id="duvidas">
+      <div class="dentro dentro-estreito">
+        <h2 data-mov="palavras">Dúvidas</h2>
+        <div class="duvidas" data-mov-grupo="sobe">
+          <details><summary>O meu site não foi feito pelo Linu Sites. Funciona?</summary><p>Funciona igual. As quatro luzes olham o site de fora, como um visitante, e não precisam de acesso a nada.</p></details>
+          <details><summary>Preciso dar alguma senha?</summary><p>Não. O site não pede nada; o Google e o Instagram são por convite de leitura, que você dá e tira quando quiser. Nunca mande senha por mensagem, nem para a gente.</p></details>
+          <details><summary>Se uma luz apagar, vocês consertam?</summary><p>O farol avisa e diz o que foi. O conserto é à parte, com quem cuida do site: se for a família, o Linu Sites ou o Linu Seguro mandam o preço antes de mexer.</p></details>
+          <details><summary>E o Vigia do Linu Seguro? É a mesma coisa?</summary><p>Não. O Vigia confere a segurança por dentro (as cópias, as contas, senhas vazadas). O farol olha de fora e junta os números do negócio num painel só. Os dois andam bem juntos.</p></details>
+          <details><summary>Como as visitas são contadas sem cookie?</summary><p>Com um contador que não guarda quem é a pessoa, só a página e de onde veio. Por isso não precisa daquele aviso de cookies.</p></details>
+          <details><summary>Posso parar quando quiser?</summary><p>Pode. Sem fidelidade: 30 dias de aviso e o painel fica com você em PDF.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao secao-faixa contato" id="contato">
+      <div class="dentro contato-dentro">
+        <div class="contato-texto">
+          <h2 data-mov="palavras">Fale com o Linu</h2>
+          <p>Diga o endereço do site e o plano. A mensagem já sai escrita no WhatsApp ou no e-mail.</p>
+          <p class="contato-canais">WhatsApp (61) 99667-2610<br>contato@linupedia.com.br</p>
+          <img class="pixel contato-linu" data-mov="cortina" data-linu-vivo data-piscar="img/linu-frente-piscando.png?v=bdd2509a" src="img/linu-frente.png?v=015c42f4" alt="" width="172" height="190" loading="lazy">
+        </div>
+        <div class="formulario" data-formulario>
+          <div class="campo">
+            <label for="nome">Seu nome</label>
+            <input type="text" id="nome" name="nome" autocomplete="name" required aria-describedby="nome-erro">
+            <p class="campo-erro" id="nome-erro" aria-live="polite"></p>
+          </div>
+          <div class="campo">
+            <label for="negocio">Negócio e cidade</label>
+            <input type="text" id="negocio" name="negocio" placeholder="Ex.: padaria em Taguatinga" required aria-describedby="negocio-erro">
+            <p class="campo-erro" id="negocio-erro" aria-live="polite"></p>
+          </div>
+          <div class="campo">
+            <label for="endereco">Endereço do site <span class="opcional">(se tiver)</span></label>
+            <input type="text" id="endereco" name="endereco" inputmode="url" autocomplete="url" placeholder="Ex.: padariadobairro.com.br">
+          </div>
+          <fieldset class="campo">
+            <legend>Plano</legend>
+            <div class="opcoes">
+              <label><input type="radio" name="plano" value="Farol do site"> Farol do site</label>
+              <label><input type="radio" name="plano" value="Farol completo" checked> Farol completo</label>
+              <label><input type="radio" name="plano" value="Ronda avulsa"> Ronda avulsa</label>
+              <label><input type="radio" name="plano" value="Ainda não sei"> Ainda não sei</label>
+            </div>
+          </fieldset>
+          <div class="campo">
+            <label for="mensagem">Algo mais? <span class="opcional">(opcional)</span></label>
+            <textarea id="mensagem" name="mensagem" rows="3" placeholder="Se já usa Google Meu Negócio, se o site é feito por outra empresa…"></textarea>
+          </div>
+          <!-- campo que só robô preenche (o servidor ignora o pedido que vier com ele) -->
+          <div class="pote" aria-hidden="true"><label>Não preencha<input type="text" name="site_extra" tabindex="-1" autocomplete="off"></label></div>
+          <div class="formulario-botoes">
+            <a class="botao botao-whatsapp" href="https://wa.me/5561996672610" target="_blank" rel="noopener" data-enviar="whatsapp">Mandar pelo WhatsApp</a>
+            <a class="botao botao-contorno" href="mailto:contato@linupedia.com.br" data-enviar="email">Mandar por e-mail</a>
+          </div>
+          <p class="formulario-privacidade">Ao mandar, o pedido (nome, negócio, endereço, plano e mensagem) fica guardado por 12 meses só para a gente responder, e depois é apagado. Para ver ou apagar antes: contato@linupedia.com.br.</p>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <!-- No celular, o pedido fica preso embaixo, ao alcance do polegar (some quando o contato está na tela) -->
+  <aside class="barra-pedir" data-barra aria-label="Pedir o farol">
+    <span>O painel do mês, a partir de R$&nbsp;50</span>
+    <a class="botao" href="#contato">Pedir o farol</a>
+  </aside>
+
+  <footer class="rodape">
+    <div class="dentro rodape-dentro">
+      <p><b>Linu Farol</b>: o painel do mês do seu negócio.<br>Da mesma equipe do
+        <a href="https://sites.linupedia.com.br/">Linu Sites</a>, do <a href="https://digital.linupedia.com.br/">Digital Linu</a>,
+        do <a href="https://seguro.linupedia.com.br/">Linu Seguro</a> e da <a href="https://linupedia.com.br/">LinuPedia</a>.</p>
+      <div class="rodape-links">
+        <a class="rodape-link" href="https://familia.linupedia.com.br/identidade">Identidade visual</a>
+        <a class="rodape-link" href="https://familia.linupedia.com.br/">Família Linu</a>
+        <a class="topo-voltar" href="#" data-voltar>Voltar ao topo <span aria-hidden="true">↑</span></a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

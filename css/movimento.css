@@ -1,0 +1,5 @@
+/* A máscara do título palavra por palavra (movimento.js, data-mov="palavras"). A folga em cima e embaixo não corta
+   acento nem a perna do g e do p (a lição do site da Barreto: 0,22 em). Sem o movimento.js, estas regras não mudam
+   nada na página. */
+.mov-mascara { display: inline-block; overflow: clip; vertical-align: bottom; padding: .22em 0 .12em; margin: -.22em 0 -.12em; }
+.mov-mascara > span { display: inline-block; }

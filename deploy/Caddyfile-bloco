@@ -2,6 +2,13 @@
 farol.linupedia.com.br {
 	# a identidade mora na Família Linu
 	redir /identidade https://familia.linupedia.com.br/identidade 301
+	# os pedidos (linu-pedidos no linuarquivos/servidor)
+	handle /api/pedido {
+		request_body {
+			max_size 8KB
+		}
+		reverse_proxy 127.0.0.1:8094
+	}
 	encode zstd gzip
 	header {
 		X-Content-Type-Options nosniff

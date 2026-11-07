@@ -1,5 +1,21 @@
 {
-  "_leia": "Os preços de referência deste site; a página sai daqui (python3 ferramentas/precos-servicos.py).",
+  "_leia": "Os preços de referência (“a partir de”) deste site, em reais. A página sai daqui: depois de mudar, rode python3 ferramentas/precos-servicos.py. A Família Linu lê este arquivo (do GitHub) para montar as rotas.",
   "moeda": "BRL",
-  "servicos": {}
+  "servicos": {
+    "farol-site": {
+      "valor": 50,
+      "tipo": "mensal",
+      "detalhe": "um site"
+    },
+    "farol-completo": {
+      "valor": 180,
+      "tipo": "mensal",
+      "detalhe": "site, Google e Instagram"
+    },
+    "ronda-avulsa": {
+      "valor": 150,
+      "tipo": "unico",
+      "detalhe": "uma vez, com relatório"
+    }
+  }
 }

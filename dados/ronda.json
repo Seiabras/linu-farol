@@ -1,0 +1,169 @@
+{
+ "quando": "2026-11-07T04:36:28+00:00",
+ "sites": [
+  {
+   "nome": "Família Linu",
+   "url": "https://familia.linupedia.com.br/",
+   "resposta_ms": 202,
+   "luz": [
+    "acesa",
+    "no ar"
+   ],
+   "peso_kb": 314,
+   "rapidez": [
+    "acesa",
+    "responde em 202 ms; a primeira visita baixa 314 KB"
+   ],
+   "trancas_postas": 6,
+   "trancas": [
+    "acesa",
+    "6 de 6 trancas"
+   ],
+   "cadeado_dias": 6.5,
+   "cadeado": [
+    "acesa",
+    "em dia: vale por mais 6 dias e renova sozinho"
+   ],
+   "ilha": "o mapa das ilhas",
+   "historico": [
+    "acesa"
+   ]
+  },
+  {
+   "nome": "Linu Sites",
+   "url": "https://sites.linupedia.com.br/",
+   "resposta_ms": 205,
+   "luz": [
+    "acesa",
+    "no ar"
+   ],
+   "peso_kb": 462,
+   "rapidez": [
+    "acesa",
+    "responde em 205 ms; a primeira visita baixa 462 KB"
+   ],
+   "trancas_postas": 6,
+   "trancas": [
+    "acesa",
+    "6 de 6 trancas"
+   ],
+   "cadeado_dias": 6.5,
+   "cadeado": [
+    "acesa",
+    "em dia: vale por mais 6 dias e renova sozinho"
+   ],
+   "ilha": "a estação",
+   "historico": [
+    "acesa"
+   ]
+  },
+  {
+   "nome": "Digital Linu",
+   "url": "https://digital.linupedia.com.br/",
+   "resposta_ms": 208,
+   "luz": [
+    "acesa",
+    "no ar"
+   ],
+   "peso_kb": 235,
+   "rapidez": [
+    "acesa",
+    "responde em 208 ms; a primeira visita baixa 235 KB"
+   ],
+   "trancas_postas": 6,
+   "trancas": [
+    "acesa",
+    "6 de 6 trancas"
+   ],
+   "cadeado_dias": 6.4,
+   "cadeado": [
+    "acesa",
+    "em dia: vale por mais 6 dias e renova sozinho"
+   ],
+   "ilha": "a ilha de edição",
+   "historico": [
+    "acesa"
+   ]
+  },
+  {
+   "nome": "Linu Seguro",
+   "url": "https://seguro.linupedia.com.br/",
+   "resposta_ms": 201,
+   "luz": [
+    "acesa",
+    "no ar"
+   ],
+   "peso_kb": 212,
+   "rapidez": [
+    "acesa",
+    "responde em 201 ms; a primeira visita baixa 212 KB"
+   ],
+   "trancas_postas": 6,
+   "trancas": [
+    "acesa",
+    "6 de 6 trancas"
+   ],
+   "cadeado_dias": 6.5,
+   "cadeado": [
+    "acesa",
+    "em dia: vale por mais 6 dias e renova sozinho"
+   ],
+   "ilha": "o iglu",
+   "historico": [
+    "acesa"
+   ]
+  },
+  {
+   "nome": "Linu Farol",
+   "url": "https://farol.linupedia.com.br/",
+   "luz": [
+    "apagada",
+    "não abriu (URLError)"
+   ],
+   "rapidez": [
+    "apagada",
+    "sem resposta"
+   ],
+   "trancas": [
+    "apagada",
+    "sem resposta"
+   ],
+   "cadeado": [
+    "apagada",
+    "não deu para ler o certificado (SSLError)"
+   ],
+   "ilha": "este farol",
+   "historico": [
+    "apagada"
+   ]
+  },
+  {
+   "nome": "LinuPedia",
+   "url": "https://linupedia.com.br/",
+   "resposta_ms": 207,
+   "luz": [
+    "acesa",
+    "no ar"
+   ],
+   "peso_kb": 6684,
+   "rapidez": [
+    "apagada",
+    "responde em 207 ms; a primeira visita baixa 6,5 MB"
+   ],
+   "trancas_postas": 6,
+   "trancas": [
+    "acesa",
+    "6 de 6 trancas"
+   ],
+   "cadeado_dias": 6.0,
+   "cadeado": [
+    "acesa",
+    "em dia: vale por mais 6 dias e renova sozinho"
+   ],
+   "ilha": "o acampamento",
+   "historico": [
+    "acesa"
+   ]
+  }
+ ]
+}

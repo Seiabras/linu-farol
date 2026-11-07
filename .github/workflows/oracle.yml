@@ -1,11 +1,14 @@
 name: Publicar na Oracle Cloud
 
-# A cada push na main, entrega o site na VM da Oracle (a mesma do Linu Sites e da LinuPedia). A chave do
+# A cada push na main e de 6 em 6 horas (a ronda da lista de faróis), entrega o site na VM da Oracle (a mesma do
+# Linu Sites e da LinuPedia). A chave do
 # segredo ORACLE_SSH_KEY entra como o usuário "linufarol", que NÃO tem sudo, e só consegue rodar
 # /opt/linu-farol/receber.sh (comando forçado): só troca o Linu Farol.
 on:
   push:
     branches: [main]
+  schedule:
+    - cron: '17 */6 * * *'   # a ronda: confere as luzes dos sites da família e publica a lista nova
   workflow_dispatch:
 
 concurrency:
@@ -33,21 +36,27 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: 22
+      # A ronda: as quatro luzes de cada site da família, com o histórico lido da lista publicada
+      - name: Ronda
+        run: python3 ferramentas/ronda.py --anterior "$SITE/dados/ronda.json"
       - name: Conferir a página
         run: |
           test -f index.html
           npx --yes html-validate@10.1.2 *.html
           python3 deploy/conferir-pagina.py
           python3 ferramentas/precos-servicos.py --conferir
+          # a versão de cada arquivo pelo conteúdo (?v=hash): o navegador guarda /img, /css e /js por 7 dias
+          python3 ferramentas/versao-arquivos.py .
       # A conferência visual (07/11/2026): 390, 820 e 1280 px, claro e escuro; reprova com rolagem lateral, erro no
       # console, arquivo faltando ou falha séria de acessibilidade (axe). As capturas ficam como artefato da execução.
       - name: Conferência visual
+        if: github.event_name != 'schedule'
         run: |
           npm i --no-save --no-audit --no-fund playwright@1.63.0 axe-core@4.10.3
           npx playwright install --with-deps chromium
           node ferramentas/conferir-visual.mjs --raiz . --paginas / --saida capturas
       - name: Guardar as capturas
-        if: always()
+        if: always() && github.event_name != 'schedule'
         uses: actions/upload-artifact@v4
         with:
           name: capturas
@@ -68,8 +77,8 @@ jobs:
             ssh-keyscan -T 15 "$VM_HOST" >> ~/.ssh/known_hosts 2>/dev/null
           fi
           chmod 600 ~/.ssh/known_hosts
-          # Só o que o site usa: as páginas, css/, js/, img/, fontes/, robots.txt e sitemap.xml (os .md e deploy/ ficam de fora)
-          tar czf - *.html robots.txt sitemap.xml css js img fontes \
+          # Só o que o site usa: as páginas, css/, js/, img/, fontes/, dados/ (a ronda), robots.txt e sitemap.xml (os .md e deploy/ ficam de fora)
+          tar czf - *.html robots.txt sitemap.xml css js img fontes dados \
             | ssh -o BatchMode=yes -o StrictHostKeyChecking=yes "linufarol@$VM_HOST"
       - name: Conferir o site
         if: steps.check.outputs.tem == 'sim'
