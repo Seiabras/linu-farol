@@ -35,7 +35,7 @@ resumo parado à esquerda, com o Linu de luneta (`css/painel.css`, `js/painel.js
   e o rodapé diz isso; trocar o endereço é trocar o código.
 - **Falta:** o contador de visitas sem cookie (um serviço na VM, como o `linu-pedidos`, e um script no site do
   cliente); até lá, as visitas são lançadas à mão como o resto do mês. O aviso no WhatsApp quando uma luz apaga também
-  não existe, (o texto do plano “Farol do site” passou de “de hora em hora” para “de 6 em 6 horas”, como a ronda, em 07/11/2026).
+  não existe. O texto do plano “Farol do site” passou de “de hora em hora” para “de 6 em 6 horas”, como a ronda (07/11/2026).
 
 ## Onde está cada coisa
 | O quê | Onde |
