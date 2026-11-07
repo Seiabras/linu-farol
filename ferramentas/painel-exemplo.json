@@ -1,0 +1,36 @@
+{
+ "_nota": "O painel de exemplo (07/11/2026), público em /p/exemplo/: o Café Aurora é o site de demonstração do Linu Sites, então as luzes são de verdade; os números do mês são inventados e o painel diz isso. O formato é o mesmo de cada cliente (ver o README, “O painel de cada cliente”).",
+ "clientes": [
+  {
+   "codigo": "exemplo",
+   "nome": "Café Aurora",
+   "site": "https://cafe.linupedia.com.br/",
+   "trecho": "Café Aurora",
+   "plano": "completo",
+   "exemplo": true,
+   "meses": [
+    {
+     "mes": "2026-09",
+     "visitas": {"pessoas": 640},
+     "google": {"aparicoes": 4100, "ligacoes": 29, "rotas": 48, "site": 96},
+     "instagram": {"alcance": 2600, "seguidores_novos": 31, "posts": 7}
+    },
+    {
+     "mes": "2026-10",
+     "visitas": {
+      "pessoas": 812,
+      "origens": [["Google", 401], ["Instagram", 214], ["Direto ou WhatsApp", 163], ["Outros sites", 34]],
+      "paginas": [["Cardápio", 520], ["Início", 488], ["Como chegar", 133]]
+     },
+     "google": {"aparicoes": 5380, "ligacoes": 37, "rotas": 61, "site": 128},
+     "instagram": {"alcance": 3240, "seguidores_novos": 44, "posts": 8},
+     "rumo": [
+      "Pôr o cardápio em texto no site, além da foto: é a página mais aberta e o Google lê melhor texto.",
+      "Responder as 6 avaliações novas do Google; duas falam do café gelado.",
+      "Os Reels do Instagram alcançaram o dobro das fotos: manter 2 por semana."
+     ]
+    }
+   ]
+  }
+ ]
+}

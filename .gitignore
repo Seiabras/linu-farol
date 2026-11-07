@@ -1,3 +1,5 @@
 arte/**/api-*.png
 node_modules/
 capturas/
+p/
+dados/clientes.json

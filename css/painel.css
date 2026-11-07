@@ -1,0 +1,120 @@
+/* O painel de cada cliente (07/11/2026, ferramentas/painel.py). Usa as cores e as luzes do estilo.css.
+   Celular: uma coluna, o resumo preso embaixo. Tablet: o resumo deitado em cima, as luzes em 4 e os cartões do mês
+   em 2. Computador: o resumo parado à esquerda, com o Linu de luneta, e o painel à direita. */
+.painel { padding: 24px 0 48px; }
+.painel-dentro { display: grid; gap: 24px; }
+.painel-aviso { margin: 0; padding: 12px 14px; border: 2px dashed var(--farol); border-radius: var(--raio); background: var(--papel); font-size: .92rem; }
+.painel-aviso a { font-weight: 700; }
+.topo-painel { margin-left: auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 600 .82rem/1.2 "IBM Plex Mono", monospace; color: var(--tinta-suave); min-width: 0; }
+
+.painel-lado h1 { font-size: clamp(2.4rem, 9vw, 3.6rem); }
+.painel-site { margin: 6px 0 0; font: 500 .95rem "IBM Plex Mono", monospace; word-break: break-all; }
+.painel-geral { display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; align-items: center; margin: 16px 0 0; padding: 12px 14px; border-left: 5px solid var(--acesa); background: var(--papel); border-radius: var(--raio); box-shadow: var(--sombra); }
+.painel-geral.farol-fraca { border-left-color: var(--fraca); }
+.painel-geral.farol-apagada { border-left-color: var(--apagada); }
+.painel-geral .sinal { grid-row: 1 / span 2; width: 18px; height: 18px; }
+.painel-geral b { font-size: 1.05rem; }
+.painel-geral span:last-child { font-size: .82rem; color: var(--tinta-suave); }
+.painel-ficha { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 14px 0 0; }
+.painel-ficha dt { font: 600 .72rem/1.2 "IBM Plex Mono", monospace; color: var(--tinta-suave); }
+.painel-ficha dd { margin: 2px 0 0; font-weight: 700; }
+.painel-linu { display: none; }
+.painel-botoes { margin-top: 18px; }
+
+.painel-corpo { display: grid; gap: 14px; min-width: 0; }
+.painel-secao { padding: 20px 16px; margin: 0 -16px; background: var(--papel); border-top: 4px solid var(--farol); }
+.painel-secao h2 { font-size: clamp(1.9rem, 6vw, 2.4rem); }
+.painel-secao .secao-sub { margin-top: 8px; }
+.painel-luzes { margin-top: 14px; }
+
+/* os 30 dias: uma faixa com um traço por ronda */
+.dias { margin: 16px 0 0; }
+.dias-faixa { display: block; width: 100%; height: 40px; }
+.h-vazio { fill: var(--fundo-2); }
+.h-acesa { fill: var(--acesa); background: var(--acesa); }
+.h-fraca { fill: var(--fraca); background: var(--fraca); }
+.h-apagada { fill: var(--apagada); background: var(--apagada); }
+.dias figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 12px; margin-top: 6px; font: 500 .75rem/1.3 "IBM Plex Mono", monospace; color: var(--tinta-suave); }
+.dias-legenda { display: inline-flex; align-items: center; gap: 6px; }
+.dias-legenda i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; }
+.dias-legenda i + i, .dias-legenda i:not(:first-child) { margin-left: 6px; }
+.dias-falhas-titulo { margin-top: 16px; font-size: 1.2rem; }
+.dias-falhas { margin: 6px 0 0; padding-left: 18px; font-size: .9rem; }
+
+/* o mês: um cartão por fonte de números */
+.mes-cartoes { display: grid; gap: 12px; margin-top: 16px; }
+.mes-cartao { padding: 14px; border: 1px solid var(--linha); border-radius: var(--raio); background: var(--fundo); }
+.mes-cartao h3 { display: flex; align-items: center; gap: 8px; font-size: 1.35rem; }
+.mes-cartao .icone { width: 22px; height: 22px; fill: none; stroke: var(--farol); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.mes-grande { margin: 10px 0 0; }
+.mes-grande b { font: 800 2.6rem/1 "Big Shoulders Display", sans-serif; font-variant-numeric: tabular-nums; }
+.mes-grande span { display: block; font-size: .85rem; color: var(--tinta-suave); }
+.mes-variacao { margin: 6px 0 0; font-size: .85rem; font-weight: 700; color: var(--tinta-suave); }
+.mes-sobe { color: var(--acesa); }
+.mes-desce { color: var(--apagada); }
+.mes-cartao h4 { margin: 14px 0 6px; font: 600 .75rem/1.2 "IBM Plex Mono", monospace; color: var(--tinta-suave); }
+.barras { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.barras li { display: grid; grid-template-columns: 1fr auto; gap: 2px 8px; font-size: .88rem; }
+.barra-valor { font-variant-numeric: tabular-nums; font-weight: 700; }
+.barra { grid-column: 1 / -1; width: 100%; height: 6px; }
+.barra-fundo { fill: var(--linha); }
+.barra-cheia { fill: var(--mar); }
+:root[data-theme="dark"] .barra-cheia { fill: var(--farol); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .barra-cheia { fill: var(--farol); } }
+.mes-miudos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 14px 0 0; }
+.mes-miudos dt { font-size: .75rem; color: var(--tinta-suave); }
+.mes-miudos dd { margin: 2px 0 0; font: 800 1.5rem/1 "Big Shoulders Display", sans-serif; }
+
+.rumo { margin: 14px 0 0; padding: 0; list-style: none; counter-reset: rumo; display: grid; gap: 10px; }
+.rumo li { counter-increment: rumo; display: grid; grid-template-columns: 34px 1fr; gap: 10px; align-items: start; }
+.rumo li::before { content: counter(rumo); display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--farol); color: var(--texto-botao); font: 800 1.1rem/1 "Big Shoulders Display", sans-serif; }
+
+/* a barra do celular */
+.barra-painel { position: fixed; left: 0; right: 0; bottom: 0; z-index: 15; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: var(--papel); border-top: 1px solid var(--linha); box-shadow: 0 -8px 20px -14px rgba(0, 0, 0, .5); }
+.painel-geral-curto { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; }
+.painel-pagina .rodape { padding-bottom: 90px; }
+
+/* Celular: só a barra embaixo leva o PDF */
+@media (max-width: 699px) {
+  .painel-botoes [data-pdf] { display: none; }
+  .topo-painel { display: none; }
+  .painel-pagina .tema { margin-left: auto; }
+}
+
+/* Tablet: o resumo deitado em cima, em duas colunas */
+@media (min-width: 700px) {
+  .barra-painel { display: none; }
+  .painel-pagina .rodape { padding-bottom: 0; }
+  .painel-lado { display: grid; grid-template-columns: 1fr 1fr; gap: 0 24px; align-items: start; }
+  .painel-lado > .sobretitulo, .painel-lado > h1, .painel-lado > .painel-site { grid-column: 1; }
+  .painel-geral { grid-column: 2; grid-row: 1 / span 3; margin-top: 0; }
+  .painel-ficha { grid-column: 1; }
+  .painel-botoes { grid-column: 2; margin-top: 14px; }
+  .painel-secao { margin: 0; padding: 24px; border-radius: var(--raio); box-shadow: var(--sombra); }
+  .painel-luzes { grid-template-columns: repeat(4, 1fr); }
+  .mes-cartoes { grid-template-columns: 1fr 1fr; }
+  .mes-cartao:first-child { grid-row: span 2; }
+  .rumo { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+}
+
+/* Computador: o resumo parado à esquerda, com o Linu de luneta */
+@media (min-width: 1100px) {
+  .painel { padding-top: 36px; }
+  .painel-dentro { grid-template-columns: 300px minmax(0, 1fr); gap: 32px; align-items: start; }
+  .painel-aviso { grid-column: 1 / -1; }
+  .painel-lado { display: block; position: sticky; top: 84px; }
+  .painel-geral { margin-top: 16px; }
+  .painel-linu { display: block; margin: 20px 0 0; }
+  .painel-botoes { flex-direction: column; align-items: stretch; }
+  .mes-cartoes { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .mes-cartao:first-child { grid-row: auto; }
+}
+
+/* O PDF (imprimir): papel branco, sem topo, sem botões */
+@media print {
+  .topo, .barra-painel, .painel-botoes, .painel-linu, .faixa-irma { display: none !important; }
+  body, .painel-secao, .mes-cartao, .painel-geral { background: #fff !important; color: #000 !important; box-shadow: none !important; }
+  .painel-dentro { display: block; }
+  .painel-secao { break-inside: avoid; margin: 12px 0 0; border: 1px solid #ccc; border-top: 4px solid #C81E1E; }
+  .painel-pagina .rodape { padding-bottom: 0; }
+}

@@ -39,14 +39,20 @@ jobs:
       # A ronda: as quatro luzes de cada site da família, com o histórico lido da lista publicada
       - name: Ronda
         run: python3 ferramentas/ronda.py --anterior "$SITE/dados/ronda.json"
+      # O painel de cada cliente (07/11/2026): a lista de clientes vem do segredo FAROL_CLIENTES (o repositório é
+      # público); sem ele, só o painel de exemplo. O histórico de cada um vem do painel publicado.
+      - name: Painéis dos clientes
+        env:
+          FAROL_CLIENTES: ${{ secrets.FAROL_CLIENTES }}
+        run: python3 ferramentas/painel.py --anterior "$SITE"
       - name: Conferir a página
         run: |
           test -f index.html
-          npx --yes html-validate@10.1.2 *.html
+          npx --yes html-validate@10.1.2 *.html p/exemplo/index.html
           python3 deploy/conferir-pagina.py
           python3 ferramentas/precos-servicos.py --conferir
           # a versão de cada arquivo pelo conteúdo (?v=hash): o navegador guarda /img, /css e /js por 7 dias
-          python3 ferramentas/versao-arquivos.py .
+          python3 ferramentas/versao-arquivos.py . *.html p/*/index.html
       # A conferência visual (07/11/2026): 390, 820 e 1280 px, claro e escuro; reprova com rolagem lateral, erro no
       # console, arquivo faltando ou falha séria de acessibilidade (axe). As capturas ficam como artefato da execução.
       - name: Conferência visual
@@ -54,7 +60,7 @@ jobs:
         run: |
           npm i --no-save --no-audit --no-fund playwright@1.63.0 axe-core@4.10.3
           npx playwright install --with-deps chromium
-          node ferramentas/conferir-visual.mjs --raiz . --paginas / --saida capturas
+          node ferramentas/conferir-visual.mjs --raiz . --paginas /,/p/exemplo/ --saida capturas
       - name: Guardar as capturas
         if: always() && github.event_name != 'schedule'
         uses: actions/upload-artifact@v4
@@ -77,8 +83,8 @@ jobs:
             ssh-keyscan -T 15 "$VM_HOST" >> ~/.ssh/known_hosts 2>/dev/null
           fi
           chmod 600 ~/.ssh/known_hosts
-          # Só o que o site usa: as páginas, css/, js/, img/, fontes/, dados/ (a ronda), robots.txt e sitemap.xml (os .md e deploy/ ficam de fora)
-          tar czf - *.html robots.txt sitemap.xml css js img fontes dados \
+          # Só o que o site usa: as páginas, css/, js/, img/, fontes/, dados/ (a ronda), p/ (os painéis), robots.txt e sitemap.xml (os .md e deploy/ ficam de fora)
+          tar czf - *.html robots.txt sitemap.xml css js img fontes dados p \
             | ssh -o BatchMode=yes -o StrictHostKeyChecking=yes "linufarol@$VM_HOST"
       - name: Conferir o site
         if: steps.check.outputs.tem == 'sim'
