@@ -3,3 +3,4 @@ node_modules/
 capturas/
 p/
 dados/clientes.json
+__pycache__/
