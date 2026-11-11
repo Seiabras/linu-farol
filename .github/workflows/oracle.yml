@@ -59,7 +59,9 @@ jobs:
         if: github.event_name != 'schedule'
         run: |
           npm i --no-save --no-audit --no-fund playwright@1.63.0 axe-core@4.10.3
-          npx playwright install --with-deps chromium
+          # o --with-deps passa pelo apt do Ubuntu; quando o espelho da máquina do GitHub não responde (11/11/2026, o
+          # linu-sites reprovou três vezes assim), a imagem já traz as bibliotecas do navegador: instala só o Chromium
+          npx playwright install --with-deps chromium || npx playwright install chromium
           node ferramentas/conferir-visual.mjs --raiz . --paginas /,/p/exemplo/ --saida capturas
       - name: Guardar as capturas
         if: always() && github.event_name != 'schedule'
