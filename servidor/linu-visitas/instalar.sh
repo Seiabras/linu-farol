@@ -56,7 +56,8 @@ else
     { print }
     /^farol\.linupedia\.com\.br[[:space:]]*\{/ && !feito {
       print "\t# o contador de visitas sem cookie (linu-farol/servidor/linu-visitas)"
-      print "\thandle /api/visita /api/visitas {"
+      print "\t@visitas path /api/visita /api/visitas"
+      print "\thandle @visitas {"
       print "\t\trequest_body {"
       print "\t\t\tmax_size 2KB"
       print "\t\t}"
@@ -65,10 +66,11 @@ else
       print "\theader /v.js Cache-Control \"public, max-age=86400\""
       feito = 1
     }' "$CF.antes-visitas" > "$CF"
-  if grep -q '127.0.0.1:8095' "$CF" && caddy validate --config "$CF" --adapter caddyfile >/dev/null 2>&1; then
+  if grep -q '127.0.0.1:8095' "$CF" && caddy validate --config "$CF" --adapter caddyfile > /tmp/caddy-validar.txt 2>&1; then
     systemctl reload caddy && echo "Caddy: /api/visita ligado (cópia em $CF.antes-visitas)."
   else
     cp "$CF.antes-visitas" "$CF"
+    tail -n 3 /tmp/caddy-validar.txt 2>/dev/null || true
     echo "O Caddy reprovou (ou o bloco do Farol não foi achado): voltei o Caddyfile como estava. Pôr o bloco à mão (deploy/Caddyfile-bloco)."
   fi
 fi
