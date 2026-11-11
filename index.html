@@ -21,16 +21,16 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta property="og:image:alt" content="O Linu de luneta ao lado do farol, com as quatro luzes: Luz, Cadeado, Rapidez e Trancas">
   <!-- O que o Google lê sobre o Linu Farol (schema.org); os planos são os 3 cartões de #planos -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Linu Farol","url":"https://farol.linupedia.com.br/","description":"O painel do mês para pequenos negócios: site no ar, cadeado, rapidez, trancas de segurança, visitas, Google e Instagram.","logo":"https://farol.linupedia.com.br/img/linu-logo.png","telephone":"+55-61-99667-2610","email":"contato@linupedia.com.br","areaServed":"BR","inLanguage":"pt-BR","parentOrganization":{"@type":"Organization","name":"Família Linu","url":"https://familia.linupedia.com.br/"},"hasOfferCatalog":{"@type":"OfferCatalog","name":"Planos","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Farol do site"},"priceSpecification":{"@type":"UnitPriceSpecification","minPrice":50,"priceCurrency":"BRL","unitText":"mês"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Farol completo"},"priceSpecification":{"@type":"UnitPriceSpecification","minPrice":180,"priceCurrency":"BRL","unitText":"mês"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Ronda avulsa"},"priceSpecification":{"@type":"UnitPriceSpecification","minPrice":150,"priceCurrency":"BRL"}}]}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Linu Farol","url":"https://farol.linupedia.com.br/","description":"O painel do mês para pequenos negócios: site no ar, cadeado, rapidez, trancas de segurança, visitas, Google e Instagram.","logo":"https://farol.linupedia.com.br/img/linu-logo.png","telephone":"+55-24-98101-3398","email":"contato@linupedia.com.br","areaServed":"BR","inLanguage":"pt-BR","parentOrganization":{"@type":"Organization","name":"Família Linu","url":"https://familia.linupedia.com.br/"},"hasOfferCatalog":{"@type":"OfferCatalog","name":"Planos","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Farol do site"},"priceSpecification":{"@type":"UnitPriceSpecification","minPrice":50,"priceCurrency":"BRL","unitText":"mês"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Farol completo"},"priceSpecification":{"@type":"UnitPriceSpecification","minPrice":180,"priceCurrency":"BRL","unitText":"mês"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Ronda avulsa"},"priceSpecification":{"@type":"UnitPriceSpecification","minPrice":150,"priceCurrency":"BRL"}}]}}</script>
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; font-src 'self'; style-src 'self'; script-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
   <link rel="canonical" href="https://farol.linupedia.com.br/">
   <link rel="preload" href="fontes/big-shoulders-display-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fontes/public-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
   <script src="js/tema-inicio.js?v=b2e4d710"></script>
   <link rel="stylesheet" href="css/fontes.css?v=67bf6215">
-  <link rel="stylesheet" href="css/estilo.css?v=8b224018">
+  <link rel="stylesheet" href="css/estilo.css?v=4674d886">
   <link rel="stylesheet" href="css/movimento.css?v=6c3684a3">
-  <script src="js/farol.js?v=4abed8c3" defer></script>
+  <script src="js/farol.js?v=65f59a33" defer></script>
   <script src="js/linu-vivo.js?v=daf0f399" defer></script>
   <script src="js/movimento.js?v=c068d761" defer></script>
   <script src="v.js?v=5900d73a" defer></script>
@@ -281,8 +281,9 @@
       <div class="dentro contato-dentro">
         <div class="contato-texto">
           <h2 data-mov="palavras">Fale com o Linu</h2>
-          <p>Diga o endereço do site e o plano. A mensagem já sai escrita no WhatsApp ou no e-mail.</p>
-          <p class="contato-canais">WhatsApp (61) 99667-2610<br>contato@linupedia.com.br</p>
+          <p>Diga o endereço do site e o plano, e mande pelo formulário (a resposta chega no seu e-mail) ou pelo WhatsApp,
+            com a mensagem já escrita.</p>
+          <p class="contato-canais">WhatsApp (24) 98101-3398</p>
           <img class="pixel contato-linu" data-mov="cortina" data-linu-vivo data-piscar="img/linu-frente-piscando.png?v=bdd2509a" src="img/linu-frente.png?v=015c42f4" alt="" width="172" height="190" loading="lazy">
         </div>
         <div class="formulario" data-formulario>
@@ -290,6 +291,11 @@
             <label for="nome">Seu nome</label>
             <input type="text" id="nome" name="nome" autocomplete="name" required aria-describedby="nome-erro">
             <p class="campo-erro" id="nome-erro" aria-live="polite"></p>
+          </div>
+          <div class="campo">
+            <label for="email">Seu e-mail <span class="opcional">(para a resposta pelo formulário)</span></label>
+            <input type="email" id="email" name="email" autocomplete="email" inputmode="email" aria-describedby="email-erro">
+            <p class="campo-erro" id="email-erro" aria-live="polite"></p>
           </div>
           <div class="campo">
             <label for="negocio">Negócio e cidade</label>
@@ -316,10 +322,11 @@
           <!-- campo que só robô preenche (o servidor ignora o pedido que vier com ele) -->
           <div class="pote" aria-hidden="true"><label>Não preencha<input type="text" name="site_extra" tabindex="-1" autocomplete="off"></label></div>
           <div class="formulario-botoes">
-            <a class="botao botao-whatsapp" href="https://wa.me/5561996672610" target="_blank" rel="noopener" data-enviar="whatsapp">Mandar pelo WhatsApp</a>
-            <a class="botao botao-contorno" href="mailto:contato@linupedia.com.br" data-enviar="email">Mandar por e-mail</a>
+            <button type="button" class="botao" data-enviar="formulario">Enviar pelo formulário</button>
+            <a class="botao botao-contorno" href="https://wa.me/5524981013398" target="_blank" rel="noopener" data-enviar="whatsapp">Mandar pelo WhatsApp</a>
           </div>
-          <p class="formulario-privacidade">Ao mandar, o pedido (nome, negócio, endereço, plano e mensagem) fica guardado por 12 meses só para a gente responder, e depois é apagado. Para ver ou apagar antes: contato@linupedia.com.br.</p>
+          <p class="formulario-status" data-formulario-status role="status" aria-live="polite"></p>
+          <p class="formulario-privacidade">Ao mandar, o pedido (nome, e-mail, negócio, endereço, plano e mensagem) fica guardado por 12 meses só para a gente responder, e depois é apagado. Para ver ou apagar antes: contato@linupedia.com.br.</p>
         </div>
       </div>
     </section>

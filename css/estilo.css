@@ -200,8 +200,8 @@ code { font: 400 .9em "IBM Plex Mono", monospace; }
 .campo { margin: 0 0 16px; border: 0; padding: 0; }
 .campo label, .campo legend { display: block; margin-bottom: 6px; font-weight: 700; }
 .opcional { font-weight: 400; color: var(--tinta-suave); }
-input[type="text"], textarea { width: 100%; padding: 12px; font: inherit; color: var(--tinta); background: var(--fundo); border: 2px solid var(--linha); border-radius: var(--raio); }
-input[type="text"]:focus, textarea:focus { border-color: var(--farol); outline: none; }
+input[type="text"], input[type="email"], textarea { width: 100%; padding: 12px; font: inherit; color: var(--tinta); background: var(--fundo); border: 2px solid var(--linha); border-radius: var(--raio); }
+input[type="text"]:focus, input[type="email"]:focus, textarea:focus { border-color: var(--farol); outline: none; }
 input[aria-invalid="true"] { border-color: var(--apagada); }
 .campo-erro { margin: 4px 0 0; min-height: 1.2em; color: var(--apagada); font-size: .9rem; }
 .opcoes { display: grid; gap: 6px; }
@@ -209,6 +209,12 @@ input[aria-invalid="true"] { border-color: var(--apagada); }
 .opcoes input { width: 20px; height: 20px; accent-color: var(--farol); }
 .formulario-botoes { display: grid; gap: 10px; }
 .formulario-privacidade { margin: 14px 0 0; font-size: .82rem; color: var(--tinta-suave); }
+/* a confirmação do formulário (11/11/2026) */
+.formulario-status { margin: 12px 0 0; font-weight: 700; }
+.formulario-status:empty { display: none; }
+.formulario-status.ok { color: var(--acesa); }
+.formulario-status.erro { color: var(--apagada); }
+.formulario-botoes .botao[disabled] { opacity: .7; cursor: progress; }
 .pote { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 
 /* Barra de pedir: só no celular, presa embaixo, ao alcance do polegar */

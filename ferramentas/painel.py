@@ -35,7 +35,7 @@ BRASILIA = datetime.timezone(datetime.timedelta(hours=-3))
 MESES = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro',
          'novembro', 'dezembro']
 PLANOS = {'site': 'Farol do site', 'completo': 'Farol completo', 'avulsa': 'Ronda avulsa'}
-WHATS = 'https://wa.me/5561996672610?text='
+WHATS = 'https://wa.me/5524981013398?text='
 e = html.escape
 
 

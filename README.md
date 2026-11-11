@@ -78,3 +78,5 @@ os números sozinho. Nos planos “completo” e “avulsa”; o exemplo segue c
 | A versão de cada arquivo | `ferramentas/versao-arquivos.py` (no Actions, antes de entregar) |
 | O contador de visitas | `v.js` (no site do cliente), `servidor/linu-visitas/` (na VM, porta 8095) |
 | Os pedidos | `/api/pedido`, o `linu-pedidos` do linuarquivos (e-mail na hora, 12 meses guardados) |
+
+- **Contato (11/11/2026):** WhatsApp (24) 98101-3398; o “Mandar por e-mail” virou “Enviar pelo formulário”, que manda o pedido a `/api/pedido` com o e-mail da pessoa (chega no contato@ e no `/admin` da Família Linu; servidor em `linuarquivos/servidor/linu-pedidos`).
