@@ -30,7 +30,7 @@
   <link rel="stylesheet" href="css/fontes.css?v=67bf6215">
   <link rel="stylesheet" href="css/estilo.css?v=4674d886">
   <link rel="stylesheet" href="css/movimento.css?v=6c3684a3">
-  <script src="js/farol.js?v=65f59a33" defer></script>
+  <script src="js/farol.js?v=d7447dad" defer></script>
   <script src="js/linu-vivo.js?v=daf0f399" defer></script>
   <script src="js/movimento.js?v=c068d761" defer></script>
   <script src="v.js?v=5900d73a" defer></script>
@@ -283,7 +283,7 @@
           <h2 data-mov="palavras">Fale com o Linu</h2>
           <p>Diga o endereço do site e o plano, e mande pelo formulário (a resposta chega no seu e-mail) ou pelo WhatsApp,
             com a mensagem já escrita.</p>
-          <p class="contato-canais">WhatsApp (24) 98101-3398</p>
+          <p class="contato-canais">WhatsApp +55 (24) 98101-3398<br>contato@linupedia.com.br</p>
           <img class="pixel contato-linu" data-mov="cortina" data-linu-vivo data-piscar="img/linu-frente-piscando.png?v=bdd2509a" src="img/linu-frente.png?v=015c42f4" alt="" width="172" height="190" loading="lazy">
         </div>
         <div class="formulario" data-formulario>
@@ -296,6 +296,10 @@
             <label for="email">Seu e-mail <span class="opcional">(para a resposta pelo formulário)</span></label>
             <input type="email" id="email" name="email" autocomplete="email" inputmode="email" aria-describedby="email-erro">
             <p class="campo-erro" id="email-erro" aria-live="polite"></p>
+          </div>
+          <div class="campo">
+            <label for="telefone">Seu WhatsApp <span class="opcional">(opcional, para a gente responder por lá)</span></label>
+            <input type="tel" id="telefone" name="telefone" autocomplete="tel" inputmode="tel" maxlength="30" placeholder="Ex.: +55 (24) 99999-9999">
           </div>
           <div class="campo">
             <label for="negocio">Negócio e cidade</label>
@@ -326,7 +330,7 @@
             <a class="botao botao-contorno" href="https://wa.me/5524981013398" target="_blank" rel="noopener" data-enviar="whatsapp">Mandar pelo WhatsApp</a>
           </div>
           <p class="formulario-status" data-formulario-status role="status" aria-live="polite"></p>
-          <p class="formulario-privacidade">Ao mandar, o pedido (nome, e-mail, negócio, endereço, plano e mensagem) fica guardado por 12 meses só para a gente responder, e depois é apagado. Para ver ou apagar antes: contato@linupedia.com.br.</p>
+          <p class="formulario-privacidade">Ao mandar, o pedido (nome, e-mail, WhatsApp, negócio, endereço, plano e mensagem) fica guardado por 12 meses só para a gente responder, e depois é apagado. Para ver ou apagar antes: contato@linupedia.com.br.</p>
         </div>
       </div>
     </section>

@@ -66,7 +66,7 @@
   var enviar = form.querySelector('[data-enviar="formulario"]');
   var estado = form.querySelector("[data-formulario-status]");
   function plano() { var r = form.querySelector('[name="plano"]:checked'); return r ? r.value : ""; }
-  ["nome", "email", "negocio", "endereco", "mensagem"].forEach(function (k) {
+  ["nome", "email", "telefone", "negocio", "endereco", "mensagem"].forEach(function (k) {
     var v = ler("farol-" + k);
     if (v) campo(k).value = v;
     campo(k).addEventListener("input", function () { guardar("farol-" + k, campo(k).value); escrever(); });
@@ -107,7 +107,7 @@
   function dadosDo(canal) {
     var robo = form.querySelector('[name="site_extra"]');
     return {
-      nome: campo("nome").value.trim(), negocio: campo("negocio").value.trim(), email: campo("email").value.trim(),
+      nome: campo("nome").value.trim(), negocio: campo("negocio").value.trim(), email: campo("email").value.trim(), telefone: campo("telefone").value.trim(),
       pacote: [plano(), campo("endereco").value.trim()].filter(Boolean).join(" · "),
       estimativa: "", mensagem: campo("mensagem").value.trim(), canal: canal, site_extra: robo ? robo.value : ""
     };
