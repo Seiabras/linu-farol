@@ -44,6 +44,8 @@ jobs:
       - name: Painéis dos clientes
         env:
           FAROL_CLIENTES: ${{ secrets.FAROL_CLIENTES }}
+          # o contador de visitas (servidor/linu-visitas); sem a chave, as visitas seguem lançadas à mão
+          FAROL_VISITAS_CHAVE: ${{ secrets.FAROL_VISITAS_CHAVE }}
         run: python3 ferramentas/painel.py --anterior "$SITE"
       - name: Conferir a página
         run: |
@@ -85,8 +87,8 @@ jobs:
             ssh-keyscan -T 15 "$VM_HOST" >> ~/.ssh/known_hosts 2>/dev/null
           fi
           chmod 600 ~/.ssh/known_hosts
-          # Só o que o site usa: as páginas, css/, js/, img/, fontes/, dados/ (a ronda), p/ (os painéis), robots.txt e sitemap.xml (os .md e deploy/ ficam de fora)
-          tar czf - *.html robots.txt sitemap.xml css js img fontes dados p \
+          # Só o que o site usa: as páginas, o v.js (o contador no site dos clientes), css/, js/, img/, fontes/, dados/ (a ronda), p/ (os painéis), robots.txt e sitemap.xml (os .md e deploy/ ficam de fora)
+          tar czf - *.html v.js robots.txt sitemap.xml css js img fontes dados p \
             | ssh -o BatchMode=yes -o StrictHostKeyChecking=yes "linufarol@$VM_HOST"
       - name: Conferir o site
         if: steps.check.outputs.tem == 'sim'

@@ -33,9 +33,33 @@ resumo parado à esquerda, com o Linu de luneta (`css/painel.css`, `js/painel.js
 - **Privacidade:** o endereço não é adivinhável (16 letras sorteadas), não entra no sitemap, o `robots.txt` fecha `/p/` e
   a página pede `noindex` e não manda o endereço para os sites de fora (`no-referrer`). Quem tiver o link vê o painel,
   e o rodapé diz isso; trocar o endereço é trocar o código.
-- **Falta:** o contador de visitas sem cookie (um serviço na VM, como o `linu-pedidos`, e um script no site do
-  cliente); até lá, as visitas são lançadas à mão como o resto do mês. O aviso no WhatsApp quando uma luz apaga também
-  não existe. O texto do plano “Farol do site” passou de “de hora em hora” para “de 6 em 6 horas”, como a ronda (07/11/2026).
+- **Falta:** o aviso no WhatsApp quando uma luz apaga. O texto do plano “Farol do site” passou de “de hora em hora”
+  para “de 6 em 6 horas”, como a ronda (07/11/2026).
+
+## O contador de visitas sem cookie (11/11/2026)
+
+`servidor/linu-visitas/` conta as visitas do site do cliente sem cookie e sem guardar quem visitou, e o painel lê
+os números sozinho. Nos planos “completo” e “avulsa”; o exemplo segue com os números inventados.
+
+- **No site do cliente:** `<script src="https://farol.linupedia.com.br/v.js" defer></script>` no `<head>` de cada página.
+  Se o site tiver CSP, acrescentar `https://farol.linupedia.com.br` ao `script-src` e ao `connect-src`. No aviso de
+  privacidade do cliente: “contamos as visitas sem cookie e sem guardar dados de quem visita (Linu Farol)”.
+- **Como conta:** cada página aberta manda o caminho, o nome do site de onde veio e o `utm_source`. O serviço resume
+  sal do dia + site + IP + navegador num sha256 para saber se a pessoa já foi contada hoje; o sal e os resumos
+  somem no dia seguinte, e o IP e o navegador nunca vão para o disco. “Pessoas” do mês é a soma das pessoas de cada
+  dia (quem volta em outro dia conta de novo; o painel diz isso). Robôs, `navigator.webdriver`, Do Not Track e
+  Global Privacy Control não contam.
+- **Quais sites:** só os que o painel pediu nos últimos 60 dias (o painel pede a cada ronda). Cliente novo no
+  `FAROL_CLIENTES` começa a contar na ronda seguinte; aviso de site desconhecido é descartado.
+- **No painel:** o mês fechado sem visitas no cadastro recebe as do contador (o que for lançado à mão vale mais), o
+  mês fechado que ainda não está no cadastro aparece só com as visitas, e o mês corrente vira a linha “Neste mês, até
+  agora”. A leitura é `GET /api/visitas?site=<host>` com `Authorization: Bearer` e o segredo `FAROL_VISITAS_CHAVE`.
+- **Ligar (uma vez, o dono roda):** `bash servidor/linu-visitas/ligar-visitas.sh` sorteia a chave, guarda no segredo
+  do GitHub e no `.env` da VM, instala o `linu-visitas.service` (porta 8095, usuário `linuvisitas`, as proteções do
+  `linu-pedidos`) e liga o `/api/visita` no bloco do Farol no Caddy (com cópia antes e volta atrás se o Caddy reprovar).
+  Rodar de novo atualiza o código; `TROCAR_CHAVE=1` troca a chave.
+- **Dados:** `/opt/linu-visitas/dados/visitas.json` (só os totais, 25 meses), `hoje.json` (o sal e os resumos do dia),
+  `sites.json`. Teste: `node servidor/linu-visitas/teste.mjs`.
 
 ## Onde está cada coisa
 | O quê | Onde |
@@ -48,4 +72,5 @@ resumo parado à esquerda, com o Linu de luneta (`css/painel.css`, `js/painel.js
 | As artes da API | `arte/` (o pedido, as tentativas e a aprovada) |
 | O Linu vivo e o movimento | `js/linu-vivo.js`, `js/movimento.js`, `css/movimento.css` (cópias do kit do linuarquivos) |
 | A versão de cada arquivo | `ferramentas/versao-arquivos.py` (no Actions, antes de entregar) |
+| O contador de visitas | `v.js` (no site do cliente), `servidor/linu-visitas/` (na VM, porta 8095) |
 | Os pedidos | `/api/pedido`, o `linu-pedidos` do linuarquivos (e-mail na hora, 12 meses guardados) |

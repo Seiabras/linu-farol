@@ -9,6 +9,13 @@ farol.linupedia.com.br {
 		}
 		reverse_proxy 127.0.0.1:8094
 	}
+	# o contador de visitas sem cookie (servidor/linu-visitas): o aviso do v.js e a leitura do painel
+	handle /api/visita /api/visitas {
+		request_body {
+			max_size 2KB
+		}
+		reverse_proxy 127.0.0.1:8095
+	}
 	encode zstd gzip
 	header {
 		X-Content-Type-Options nosniff
@@ -20,6 +27,8 @@ farol.linupedia.com.br {
 	}
 	@arquivos path /img/* /fontes/* /css/* /js/*
 	header @arquivos Cache-Control "public, max-age=604800"
+	# o v.js entra no site dos clientes: um dia de cache, para uma correção chegar logo
+	header /v.js Cache-Control "public, max-age=86400"
 	root * /opt/linu-farol/app
 	try_files {path} {path}.html {path}/index.html
 	file_server

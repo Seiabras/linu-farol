@@ -10,8 +10,9 @@ De onde vêm os clientes:
 
 Para cada cliente, faz a ronda do site (as mesmas quatro luzes da lista, do ferramentas/ronda.py), junta com o
 histórico publicado (p/<código>/ronda.json, lido de --anterior; até 120 rondas, 30 dias) e escreve p/<código>/index.html
-e p/<código>/ronda.json. Os números do mês (visitas, Google, Instagram) e o rumo vêm do cadastro, lançados à mão todo
-mês. --sem-rede não faz a ronda (usa só o histórico; para olhar o visual no computador).
+e p/<código>/ronda.json. Os números do mês (Google, Instagram) e o rumo vêm do cadastro, lançados à mão todo mês. As
+visitas vêm sozinhas do contador do Farol (servidor/linu-visitas, com a chave FAROL_VISITAS_CHAVE) quando o site do
+cliente tem o v.js; o que estiver no cadastro vale mais que o contador. --sem-rede não faz a ronda (usa só o histórico; para olhar o visual no computador).
 --novo-codigo sorteia o código de um cliente novo (o endereço é https://farol.linupedia.com.br/p/<código>/).
 """
 import datetime
@@ -22,6 +23,7 @@ import re
 import secrets
 import sys
 import urllib.parse
+import urllib.request
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -65,6 +67,38 @@ def ler_anterior(base, codigo):
     return {}
 
 
+def ler_visitas(c):
+    """Os totais do contador (servidor/linu-visitas) para o site do cliente; {} sem a chave ou se o contador não responder.
+    Pedir também avisa o contador que este site vale: ele só conta site que o painel pediu nos últimos 60 dias."""
+    chave = os.environ.get('FAROL_VISITAS_CHAVE', '').strip()
+    if not chave or c.get('exemplo') or c['plano'] == 'site':
+        return {}
+    host = urllib.parse.urlsplit(c['site']).hostname or ''
+    base = os.environ.get('FAROL_VISITAS_URL', 'https://farol.linupedia.com.br')
+    req = urllib.request.Request(f'{base}/api/visitas?site={urllib.parse.quote(host)}',
+                                 headers={'Authorization': f'Bearer {chave}', 'User-Agent': 'linu-farol-painel'})
+    try:
+        with urllib.request.urlopen(req, timeout=20) as r:
+            return json.loads(r.read(2_000_000).decode('utf-8')).get('meses', {})
+    except Exception as erro:
+        print(f'{c["codigo"][:4]}…: sem o contador de visitas ({erro.__class__.__name__})')
+        return {}
+
+
+def juntar_visitas(c, contador, hoje):
+    """Põe as visitas do contador nos meses fechados que não têm visitas lançadas à mão (e cria o mês fechado que ainda
+    não está no cadastro). Devolve o mês corrente, parcial, para a linha “neste mês até agora”."""
+    meses = {m['mes']: m for m in c.get('meses', [])}
+    for mes, v in contador.items():
+        if mes >= hoje or not v.get('pessoas'):
+            continue
+        m = meses.setdefault(mes, {'mes': mes})
+        if not m.get('visitas'):
+            m['visitas'] = {'pessoas': v['pessoas'], 'origens': v.get('origens'), 'paginas': v.get('paginas'), 'contador': True}
+    c['meses'] = sorted(meses.values(), key=lambda m: m['mes'])
+    return contador.get(hoje)
+
+
 def nome_mes(chave, ano=True):
     a, m = chave.split('-')
     return f'{MESES[int(m) - 1]} de {a}' if ano else MESES[int(m) - 1]
@@ -101,16 +135,21 @@ def cartao(icone, titulo, grande, rotulo, var, resto=''):
             f'<p class="mes-grande"><b>{grande}</b> <span>{rotulo}</span></p>{var}{resto}</article>')
 
 
-def secao_mes(c):
+def secao_mes(c, parcial=None):
     if c['plano'] == 'site':
         return ('<section class="painel-secao" id="mes" aria-labelledby="mes-titulo"><h2 id="mes-titulo">O mês</h2>'
                 '<p class="secao-sub">No Farol do site, o painel são as quatro luzes e o histórico. As visitas, o Google e o '
                 'Instagram do mês entram no <a href="/#planos">Farol completo</a>.</p></section>')
     meses = sorted(c.get('meses', []), key=lambda m: m['mes'])
+    agora = ''
+    if parcial and parcial.get('pessoas'):
+        agora = (f'<p class="mes-agora">Neste mês, até agora: <b>{numero(parcial["pessoas"])}</b> '
+                 f'{"pessoa" if parcial["pessoas"] == 1 else "pessoas"} no site, {numero(parcial["vistas"])} '
+                 f'{"página aberta" if parcial["vistas"] == 1 else "páginas abertas"}.</p>')
     if not meses:
         return ('<section class="painel-secao" id="mes" aria-labelledby="mes-titulo"><h2 id="mes-titulo">O mês</h2>'
                 '<p class="secao-sub">Os números do primeiro mês (visitas, Google e Instagram) entram aqui até o dia 5 do mês '
-                'que vem, com o rumo.</p></section>')
+                f'que vem, com o rumo.</p>{agora}</section>')
     m = meses[-1]
     a = meses[-2] if len(meses) > 1 else {}
     antes = nome_mes(a['mes'], False) if a else ''
@@ -119,7 +158,9 @@ def secao_mes(c):
     if v:
         cartoes.append(cartao('i-visitas', 'Visitas do site', numero(v['pessoas']), 'pessoas',
                               variacao(v['pessoas'], va.get('pessoas'), antes),
-                              barras('De onde vieram', v.get('origens')) + barras('O que mais abriram', v.get('paginas'))))
+                              barras('De onde vieram', v.get('origens')) + barras('O que mais abriram', v.get('paginas'))
+                              + ('<p class="mes-fonte">Contadas pelo Farol, sem cookie: quem volta em outro dia conta de novo.</p>'
+                                 if v.get('contador') else '')))
     g, ga = m.get('google'), a.get('google', {})
     if g:
         extra = (f'<dl class="mes-miudos"><div><dt>Ligações</dt><dd>{numero(g.get("ligacoes", 0))}</dd></div>'
@@ -136,7 +177,7 @@ def secao_mes(c):
     titulo = nome_mes(m['mes']).capitalize()
     return (f'<section class="painel-secao" id="mes" aria-labelledby="mes-titulo"><h2 id="mes-titulo">{e(titulo)}</h2>'
             f'<p class="secao-sub">O mês fechado, comparado com {e(antes) if antes else "o anterior quando houver"}.</p>'
-            f'<div class="mes-cartoes">{"".join(cartoes)}</div></section>')
+            f'<div class="mes-cartoes">{"".join(cartoes)}</div>{agora}</section>')
 
 
 def secao_rumo(c):
@@ -254,7 +295,7 @@ def pagina(c, r, hist, sprite, quando):
           <dl class="luzes painel-luzes">{luzes}</dl>
         </section>
         {secao_dias(hist)}
-        {secao_mes(c)}
+        {secao_mes(c, c.get('_parcial'))}
         {secao_rumo(c)}
       </div>
     </div>
@@ -290,7 +331,9 @@ def main():
     base = sys.argv[sys.argv.index('--anterior') + 1] if '--anterior' in sys.argv else None
     sem_rede = '--sem-rede' in sys.argv
     sprite = sprite_da_pagina()
+    mes_atual = datetime.datetime.now(BRASILIA).strftime('%Y-%m')
     for c in ler_clientes():
+        c['_parcial'] = juntar_visitas(c, ler_visitas(c), mes_atual)
         anterior = ler_anterior(base, c['codigo'])
         quando = datetime.datetime.now(datetime.UTC).replace(microsecond=0).isoformat()
         if sem_rede and anterior.get('luzes'):
