@@ -41,6 +41,8 @@ e = html.escape
 
 def ler_clientes():
     clientes = json.loads((RAIZ / 'ferramentas' / 'painel-exemplo.json').read_text(encoding='utf-8'))['clientes']
+    # os painéis dos sites da própria família (públicos, com o contador de visitas de verdade)
+    clientes += json.loads((RAIZ / 'ferramentas' / 'paineis-da-casa.json').read_text(encoding='utf-8'))['clientes']
     texto = os.environ.get('FAROL_CLIENTES', '').strip()
     local = RAIZ / 'dados' / 'clientes.json'
     if not texto and local.exists():
@@ -227,6 +229,10 @@ def pagina(c, r, hist, sprite, quando):
                     f'<span class="luz-estado">{r[k][0]}</span></dt><dd>{e(r[k][1])}</dd></div>' for k, rot in LUZES)
     desde = f'<div><dt>Desde</dt><dd>{e(nome_mes(c["desde"]))}</dd></div>' if c.get('desde') else ''
     aviso = ''
+    if c.get('casa'):
+        aviso = ('<p class="painel-aviso"><b>Painel da casa.</b> Um site da própria família Linu, aberto para mostrar o Farol com '
+                 'números de verdade: as luzes de 6 em 6 horas e as visitas contadas sem cookie desde novembro de 2026. '
+                 '<a href="/#planos">Ver os planos</a></p>')
     if c.get('exemplo'):
         aviso = ('<p class="painel-aviso"><b>Painel de exemplo.</b> O Café Aurora é o site de demonstração do Linu Sites: '
                  'as luzes e os 30 dias são de verdade, conferidos de 6 em 6 horas; os números do mês e o rumo são inventados, '
@@ -347,7 +353,7 @@ def main():
         (pasta / 'ronda.json').write_text(json.dumps({'quando': quando, 'luzes': luzes, 'historico': hist}, ensure_ascii=False) + '\n', encoding='utf-8')
         html_ = '\n'.join(l.rstrip() for l in pagina(c, luzes, hist, sprite, quando).split('\n') if l.strip()) + '\n'
         (pasta / 'index.html').write_text(html_, encoding='utf-8')
-        nome = c['nome'] if c.get('exemplo') else c['codigo'][:4] + '…'  # o log do Actions é público
+        nome = c['nome'] if c.get('exemplo') or c.get('casa') else c['codigo'][:4] + '…'  # o log do Actions é público
         print(f'painel {nome}: ' + ' · '.join(f'{rot} {r[k][0]}' for k, rot in LUZES))
 
 

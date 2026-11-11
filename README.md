@@ -58,6 +58,10 @@ os números sozinho. Nos planos “completo” e “avulsa”; o exemplo segue c
   do GitHub e no `.env` da VM, instala o `linu-visitas.service` (porta 8095, usuário `linuvisitas`, as proteções do
   `linu-pedidos`) e liga o `/api/visita` no bloco do Farol no Caddy (com cópia antes e volta atrás se o Caddy reprovar).
   Rodar de novo atualiza o código; `TROCAR_CHAVE=1` troca a chave.
+- **Os sites da família (11/11/2026):** os cinco contam visitas (cópia do `v.js` em `js/farol-visitas.js` em cada um; o
+  Farol usa o `v.js` direto). Os painéis deles são públicos, em `ferramentas/paineis-da-casa.json`: `/p/casa-familia/`,
+  `/p/casa-sites/`, `/p/casa-digital/`, `/p/casa-seguro/` e `/p/casa-farol/`. O CSP de cada um no Caddy libera o Farol no
+  `connect-src`: `bash servidor/linu-visitas/liberar-sites-da-casa.sh` (uma vez; volta atrás se o Caddy reprovar).
 - **Dados:** `/opt/linu-visitas/dados/visitas.json` (só os totais, 25 meses), `hoje.json` (o sal e os resumos do dia),
   `sites.json`. Teste: `node servidor/linu-visitas/teste.mjs`.
 

@@ -1,0 +1,55 @@
+{
+ "_nota": "Os painéis dos sites da própria família (11/11/2026): públicos como o exemplo, para testar e mostrar o contador de visitas sem cookie com números de verdade. Mesmo formato do painel-exemplo.json.",
+ "clientes": [
+  {
+   "codigo": "casa-familia",
+   "nome": "Família Linu",
+   "site": "https://familia.linupedia.com.br/",
+   "trecho": "Família Linu",
+   "plano": "completo",
+   "desde": "2026-11",
+   "casa": true,
+   "meses": []
+  },
+  {
+   "codigo": "casa-sites",
+   "nome": "Linu Sites",
+   "site": "https://sites.linupedia.com.br/",
+   "trecho": "Linu Sites",
+   "plano": "completo",
+   "desde": "2026-11",
+   "casa": true,
+   "meses": []
+  },
+  {
+   "codigo": "casa-digital",
+   "nome": "Digital Linu",
+   "site": "https://digital.linupedia.com.br/",
+   "trecho": "Digital Linu",
+   "plano": "completo",
+   "desde": "2026-11",
+   "casa": true,
+   "meses": []
+  },
+  {
+   "codigo": "casa-seguro",
+   "nome": "Linu Seguro",
+   "site": "https://seguro.linupedia.com.br/",
+   "trecho": "Linu Seguro",
+   "plano": "completo",
+   "desde": "2026-11",
+   "casa": true,
+   "meses": []
+  },
+  {
+   "codigo": "casa-farol",
+   "nome": "Linu Farol",
+   "site": "https://farol.linupedia.com.br/",
+   "trecho": "Linu Farol",
+   "plano": "completo",
+   "desde": "2026-11",
+   "casa": true,
+   "meses": []
+  }
+ ]
+}
