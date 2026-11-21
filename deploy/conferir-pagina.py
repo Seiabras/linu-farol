@@ -28,7 +28,8 @@ def conferir(origem, ref):
         faltando.append(f'{origem.relative_to(SITE)}: {ref}')
 
 
-for pagina in SITE.glob('*.html'):
+# a página de cada idioma fica numa pasta (ferramentas/gerar-idiomas.mjs)
+for pagina in [*SITE.glob('*.html'), *SITE.glob('*/index.html')]:
     html = re.sub(r'<!--.*?-->', '', pagina.read_text(encoding='utf-8'), flags=re.S)
     for ref in re.findall(r'\s(?:src|href)="([^"]+)"', html):
         conferir(pagina, ref)
