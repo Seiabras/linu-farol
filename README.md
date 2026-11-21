@@ -2,7 +2,8 @@
 
 Da família Linu: **https://farol.linupedia.com.br**, o painel do mês para pequenos negócios. Site estático com
 publicação própria: a cada push na `main` e de 6 em 6 horas, o GitHub Actions faz a ronda, confere as páginas, os
-preços e o visual e entrega na VM (`deploy/ORACLE.md`). O `/identidade` leva para
+preços e o visual e entrega na VM (`deploy/ORACLE.md`). O `deploy/receber.sh` recusa pacote com atalho (link), que poderia
+apontar para fora do site (21/11/2026). O `/identidade` leva para
 https://familia.linupedia.com.br/identidade.
 
 ## A ronda e a lista de faróis
